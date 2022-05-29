@@ -14,6 +14,8 @@ class DevolucionController extends Controller
      */
     public function index()
     {
+        $datos=Devolucion::all();
+        return view("devoluciones.index",compact("datos"));
         //
     }
 
