@@ -26,6 +26,7 @@ class DevolucionController extends Controller
      */
     public function create()
     {
+        return view("devoluciones.create");
         //
     }
 
@@ -37,6 +38,10 @@ class DevolucionController extends Controller
      */
     public function store(Request $request)
     {
+        Devolucion:: create(["id_detalle_prestamos"=>$request->id_detalle_prestamos,
+            "fecha_devolucion"=>$request->fecha_devolucion,
+            "observaciones"=>$request->observaciones]);
+        return redirect()->route("devoluciones.index");
         //
     }
 
