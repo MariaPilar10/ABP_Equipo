@@ -62,8 +62,9 @@ class DevolucionController extends Controller
      * @param  \App\Models\Devolucion  $devolucion
      * @return \Illuminate\Http\Response
      */
-    public function edit(Devolucion $devolucion)
+    public function edit(Devolucion $devolucione)
     {
+        return view('devoluciones.edit',compact("devolucione"));
         //
     }
 
@@ -74,19 +75,27 @@ class DevolucionController extends Controller
      * @param  \App\Models\Devolucion  $devolucion
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Devolucion $devolucion)
+
+    public function update(Request $request, Devolucion $devolucione)
     {
+        $devolucione->update(['id_detalle_prestamos'=>$request->id_detalle_prestamos,
+            'fecha_devolucion'=>$request->fecha_devolucion,
+            'observaciones'=>$request->observaciones]);
+        return redirect()->route("devoluciones.index");
         //
     }
-
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Devolucion  $devolucion
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Devolucion $devolucion)
+    
+    public function destroy(Devolucion $devolucione)
     {
+        $devolucione->delete();
+
+        return redirect()->route("devoluciones.index");
         //
     }
 }
